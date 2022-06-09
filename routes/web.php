@@ -1,6 +1,9 @@
 <?php
 
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\Manage\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// INERTIA
+// Route::group(['prefix'=>'vop', 'middleware'=>['auth']], function(){
+//     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+// });
+
+// require __DIR__.'/auth.php';

@@ -167,7 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        KriosMane\CoinMarketCap\Providers\CoinMarketCapServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -192,6 +193,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'CoinMarketCapApi' => KriosMane\CoinMarketCap\Facades\CoinMarketCap::class,
     ])->toArray(),
 
 ];
