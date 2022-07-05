@@ -8,7 +8,17 @@ use App\Http\Resources\InsightResource;
 
 class InsightController extends Controller
 {
-    public function insight()
+    public function insights()
+    {
+        return InsightResource::collection(Insight::latest()->get());
+    }
+
+    public function insight($coin)
+    {
+        return new InsightResource(Insight::where('coin_id', $coin)->first());
+    }
+    
+    public function latest()
     {
         return new InsightResource(Insight::latest()->first());
     }

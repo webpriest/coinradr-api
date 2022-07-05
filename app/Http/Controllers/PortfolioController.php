@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use App\Http\Requests\PortfolioRequest;
+use App\Http\Resources\PortfolioResource;
 
 class PortfolioController extends Controller
 {
@@ -15,7 +16,7 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        return auth()->user()->portfolios;
+        return PortfolioResource::collection(auth()->user()->portfolios);
     }
 
     /**
@@ -39,7 +40,7 @@ class PortfolioController extends Controller
 
         $portfolio->portfolio_logs()->create($request->only(['value_of_asset']));
 
-        return response()->json($portfolio);
+        return new PortfolioResource($portfolio);
     }
 
     protected function merge_portfolio($model, $request)
@@ -64,9 +65,9 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Portfolio $portfolio)
     {
-        //
+        return new PortfolioResource($portfolio);
     }
 
     /**
@@ -76,7 +77,7 @@ class PortfolioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Portfolio $portfolio)
     {
         //
     }
